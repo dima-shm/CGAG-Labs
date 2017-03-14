@@ -1,0 +1,15 @@
+﻿Сборка начата 22.02.2017 9:07:45.
+     1>Проект "D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Lab-2\Lab-2.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Debug\Lab-2.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Debug\Lab-2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Debug\Lab-2.lib" /MACHINE:X86 "Debug\Lab-2.res"
+         Debug\main.obj
+         Lab-2.vcxproj -> D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Debug\Lab-2.exe
+     1>Сборка проекта "D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-2\Lab-2\Lab-2.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:02.92
