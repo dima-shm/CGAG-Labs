@@ -53,15 +53,15 @@ private:
 	CRectD RS;
 	CPlot2D Graph, Graphs[4];
 	CMyPen PenLine, PenAxis;
-	enum { menuTestsF1, menuTestsF2, menuTestsF3, menuTestsF4, menuTestsF1234, clear } state;
+	enum { menuTestsF1, menuTestsF2, menuTestsF3, menuTestsF4, menuTestsF1234, clear } condition;
 	CMenu menu;
 	DECLARE_MESSAGE_MAP()
 	int OnCreate(LPCREATESTRUCT);
 
 public:
-	CMainWnd::CMainWnd()
-	{
+	CMainWnd::CMainWnd() {
 		Create(NULL, L"Lab-3", WS_OVERLAPPEDWINDOW, CRect(10, 10, 800, 600), NULL, NULL);
+		condition = clear;
 	}
 
 	void OnPaint();
@@ -110,27 +110,27 @@ int CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CMainWnd::OnPaint()
 {
 	CPaintDC dc(this);
-	switch (state)
+	switch (condition)
 	{
-	case menuTestsF1:
+	case menuTestsF1: {
 		Graph.Draw(dc, 1, 1);
-		break;
-	case menuTestsF2:
+	} break;
+	case menuTestsF2: {
 		Graph.GetRS(RS);
 		SetMyMode(dc, RS, RW); // Устанавливаем режим отображения MM_ANISOTROPIC
 		Graph.Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT); // Устанавливаем режим отображения MM_TEXT
-		break;
-	case menuTestsF3:
+	} break;
+	case menuTestsF3: {
 		Graph.Draw(dc, 1, 1);
-		break;
-	case menuTestsF4:
+	} break;
+	case menuTestsF4: {
 		Graph.GetRS(RS);
 		SetMyMode(dc, RS, RW);
 		Graph.Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT);
-		break;
-	case menuTestsF1234:
+	} break;
+	case menuTestsF1234: {
 		Func1();
 		Graphs[0].Draw(dc, 1, 1);
 
@@ -148,10 +148,10 @@ void CMainWnd::OnPaint()
 		SetMyMode(dc, RS, RW);
 		Graphs[3].Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT);
-		break;
-	case clear:
+	} break;
+	case clear: {
 		Invalidate();
-		break;
+	} break;
 	}
 }
 
@@ -164,8 +164,7 @@ void CMainWnd::MenuTestsF1()
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
 
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF1(X(i));
 	}
@@ -176,7 +175,7 @@ void CMainWnd::MenuTestsF1()
 	Graph.SetPenLine(PenLine);
 	Graph.SetPenAxis(PenAxis);
 
-	state = menuTestsF1;
+	condition = menuTestsF1;
 	this->Invalidate();
 }
 void CMainWnd::MenuTestsF2()
@@ -188,8 +187,7 @@ void CMainWnd::MenuTestsF2()
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
 
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF2(X(i));
 	}
@@ -200,7 +198,7 @@ void CMainWnd::MenuTestsF2()
 	Graph.SetPenLine(PenLine);
 	Graph.SetPenAxis(PenAxis);
 
-	state = menuTestsF2;
+	condition = menuTestsF2;
 	this->Invalidate();
 }
 void CMainWnd::MenuTestsF3()
@@ -212,8 +210,7 @@ void CMainWnd::MenuTestsF3()
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
 
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF3(X(i));
 	}
@@ -224,7 +221,7 @@ void CMainWnd::MenuTestsF3()
 	Graph.SetPenLine(PenLine);
 	Graph.SetPenAxis(PenAxis);
 
-	state = menuTestsF3;
+	condition = menuTestsF3;
 	this->Invalidate();
 }
 void CMainWnd::MenuTestsF4()
@@ -236,8 +233,7 @@ void CMainWnd::MenuTestsF4()
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
 
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF4(X(i));
 	}
@@ -248,12 +244,12 @@ void CMainWnd::MenuTestsF4()
 	Graph.SetPenLine(PenLine);
 	Graph.SetPenAxis(PenAxis);
 
-	state = menuTestsF4;
+	condition = menuTestsF4;
 	this->Invalidate();
 }
 void CMainWnd::MenuTestsF1234()
 {
-	state = menuTestsF1234;
+	condition = menuTestsF1234;
 	this->Invalidate();
 }
 void CMainWnd::Func1()
@@ -264,8 +260,7 @@ void CMainWnd::Func1()
 	int N = (xH - xL) / dx;
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF1(X(i));
 	}
@@ -284,8 +279,7 @@ void CMainWnd::Func2()
 	int N = (xH - xL) / dx;
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF2(X(i));
 	}
@@ -304,8 +298,7 @@ void CMainWnd::Func3()
 	int N = (xH - xL) / dx;
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF3(X(i));
 	}
@@ -324,8 +317,7 @@ void CMainWnd::Func4()
 	int N = (xH - xL) / dx;
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++)
-	{
+	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
 		Y(i) = MyF4(X(i));
 	}
@@ -356,7 +348,8 @@ double CMainWnd::MyF4(double x)
 
 void CMainWnd::Clear()
 {
-	this->Invalidate();
+	condition = clear;
+	RedrawWindow();
 }
 void CMainWnd::Exit()
 {

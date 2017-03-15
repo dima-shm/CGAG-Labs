@@ -1,21 +1,23 @@
-﻿Сборка начата 15.03.2017 19:53:58.
-     1>Проект "D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Lab-1\Lab-1.vcxproj" в узле 2 (целевые объекты Build).
+﻿Сборка начата 15.03.2017 23:17:22.
+     1>Проект "D:\GitHub\CGAG-Labs\Lab-1\Lab-1\Lab-1.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
          _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-1\lab-1\cmainwnd.h(126): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-1\lab-1\cmainwnd.h(131): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-1\lab-1\cmainwnd.h(137): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-1\lab-1\cmainwnd.h(151): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-1\lab-1\main.cpp(13): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\github\cgag-labs\lab-1\lab-1\cmainwnd.h(128): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\github\cgag-labs\lab-1\lab-1\cmainwnd.h(133): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\github\cgag-labs\lab-1\lab-1\cmainwnd.h(139): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\github\cgag-labs\lab-1\lab-1\cmainwnd.h(153): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>d:\github\cgag-labs\lab-1\lab-1\main.cpp(13): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0409" /nologo /fo"Debug\Lab-1.res" Lab-1.rc 
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Debug\Lab-1.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Debug\Lab-1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Debug\Lab-1.lib" /MACHINE:X86 "Debug\Lab-1.res"
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\CGAG-Labs\Lab-1\Debug\Lab-1.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"D:\GitHub\CGAG-Labs\Lab-1\Debug\Lab-1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\CGAG-Labs\Lab-1\Debug\Lab-1.lib" /MACHINE:X86 "Debug\Lab-1.res"
          Debug\CMatrix.obj
          Debug\main.obj
-         Lab-1.vcxproj -> D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Debug\Lab-1.exe
-     1>Сборка проекта "D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-1\Lab-1\Lab-1.vcxproj" завершена (целевые объекты Build).
+         Lab-1.vcxproj -> D:\GitHub\CGAG-Labs\Lab-1\Debug\Lab-1.exe
+     1>Сборка проекта "D:\GitHub\CGAG-Labs\Lab-1\Lab-1\Lab-1.vcxproj" завершена (целевые объекты Build).
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:02.69
+Затраченное время: 00:00:05.96

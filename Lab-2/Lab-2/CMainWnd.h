@@ -4,7 +4,7 @@
 class CMainWnd : public CFrameWnd
 {
 private:
-	enum { leftButtonDown, showBitMap, rightButtonDown, clear } state;
+	enum { leftButtonDown, showBitMap, rightButtonDown, clear } condition;
 	HBITMAP Bit;
 	RECT lpRect, Rect;
 	POINT ptLeftButtonDown, ptRightButton0, ptRightButton1;
@@ -15,9 +15,9 @@ private:
 	int OnCreate(LPCREATESTRUCT);
 
 public:
-	CMainWnd::CMainWnd()
-	{
+	CMainWnd::CMainWnd() {
 		Create(NULL, L"Lab-2", WS_OVERLAPPEDWINDOW, CRect(10, 10, 800, 600), NULL, NULL);
+		condition = clear;
 	}
 
 	void OnPaint();
@@ -58,7 +58,7 @@ int CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CMainWnd::OnPaint()
 {
 	CPaintDC dc(this);
-	switch (state)
+	switch (condition)
 	{
 	case leftButtonDown:
 		DrawPoint(dc, ptLeftButtonDown.x, ptLeftButtonDown.y, RGB(255, 0, 0));
@@ -89,7 +89,7 @@ void CMainWnd::OnLButtonDown(UINT flags, CPoint Loc)
 	GetCursorPos(&ptLeftButtonDown);
 	ptLeftButtonDown.x = ptLeftButtonDown.x - lpRect.left - 10;
 	ptLeftButtonDown.y = ptLeftButtonDown.y - lpRect.top - 10 - 40 - 3;
-	state = leftButtonDown;
+	condition = leftButtonDown;
 	Invalidate(FALSE);
 }
 void CMainWnd::DrawPoint(CPaintDC &dc, long x, long y, COLORREF color)
@@ -102,12 +102,11 @@ void CMainWnd::DrawPoint(CPaintDC &dc, long x, long y, COLORREF color)
 void CMainWnd::MenuTestImage()
 {
 	CFileDialog dlg(TRUE); // Панель выбора файлов
-	dlg.m_ofn.lpstrInitialDir = L"D:\\Study\\2 курс\\2 семестр\\КГиГ\\Лабораторные\\Lab-2\\Lab-2\\Image";
 	dlg.m_ofn.lpstrTitle = L"Открыть файл";
 	int result = dlg.DoModal(); // Отображаем диалоговое окно
 	LPCWSTR fileName = dlg.m_ofn.lpstrFile;
 	Bit = (HBITMAP)LoadImage(NULL, fileName, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	state = showBitMap;
+	condition = showBitMap;
 	Invalidate(FALSE);
 }
 int CMainWnd::ShowBitMap(HWND hWnd, HBITMAP hBit, int x, int y)
@@ -143,7 +142,7 @@ void CMainWnd::OnRButtonDown(UINT, CPoint)
 		Rect.right = ptRightButton1.x;
 		Rect.bottom = ptRightButton1.y;
 	}
-	state = rightButtonDown;
+	condition = rightButtonDown;
 	Invalidate(FALSE);
 }
 int CMainWnd::ClientToBmp(HWND hWnd, RECT rect, LPCWSTR Name)
@@ -210,7 +209,7 @@ int CMainWnd::ClientToBmp(HWND hWnd, RECT rect, LPCWSTR Name)
 
 void CMainWnd::Clear()
 {
-	state = clear;
+	condition = clear;
 	RedrawWindow();
 }
 void CMainWnd::Exit()

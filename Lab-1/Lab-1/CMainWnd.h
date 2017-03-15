@@ -54,6 +54,7 @@ public:
 	void MenuTestFunctionSphereToCart();
 
 	void Clear();
+	void Exit();
 };
 
 int CMainWnd::num = 2;
@@ -72,6 +73,7 @@ BEGIN_MESSAGE_MAP(CMainWnd, CFrameWnd)
 	ON_COMMAND(ID_FUNCTIONS_40008, MenuTestFunctionCosV1V2)
 	ON_COMMAND(ID_FUNCTIONS_40009, MenuTestFunctionSphereToCart)
 	ON_COMMAND(ID_TESTS_CLEAR40020, Clear)
+	ON_COMMAND(ID_EXIT, Exit)
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 int CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -212,5 +214,9 @@ void CMainWnd::MenuTestFunctionSphereToCart()
 void CMainWnd::Clear()
 {
 	condition = clear;
-	Invalidate();
+	RedrawWindow();
+}
+void CMainWnd::Exit()
+{
+	DestroyWindow();
 }
