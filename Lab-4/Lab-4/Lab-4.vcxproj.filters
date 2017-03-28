@@ -27,9 +27,6 @@
     <ClInclude Include="CPlot2D.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="MyMode.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -40,6 +37,9 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Lib.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

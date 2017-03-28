@@ -69,7 +69,7 @@ if (n_cols>1)     //  Число столбцов больше одного
    }
 if (i>n_rows-1)     //  проверка выхода за диапазон
    {
-    TCHAR* error=TEXT("CMatrix::operator(int): выход индекса за границу диапазона ");
+		TCHAR* error=TEXT("CMatrix::operator(int): выход индекса за границу диапазона ");
 		MessageBox(NULL,error,TEXT("Ошибка"),MB_ICONSTOP);
     exit(1);
    }

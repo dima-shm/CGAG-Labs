@@ -1,3 +1,6 @@
+CMatrix CreateTranslate2D(double, double);
+CMatrix CreateRotate2D(double);
+
 class CSunSystem
 {
 	CRect Sun;		  // Прямоугольник Солнца
@@ -46,13 +49,16 @@ CSunSystem::CSunSystem()
 	wEarth = 5;
 	wMoon = 50;
 	dt = 0.2;
-	dfiE = wEarth * dt;
 	dfiM = wMoon * dt;
+	dfiE = wEarth * dt;
 	MCoords.RedimMatrix(3);
 	MCoords1.RedimMatrix(3);
+	ECoords.RedimMatrix(3);
+	PE.RedimMatrix(3, 3);
+	PM.RedimMatrix(3, 3);
 
-	RoE = (EarthOrbit.right - EarthOrbit.left) / 2;
 	RoM = (MoonOrbit.right - MoonOrbit.left) / 2;
+	RoE = (EarthOrbit.right - EarthOrbit.left) / 2;
 	double ff = (fiM / 180.0) * pi;
 	double x = RoM * cos(ff);
 	double y = RoM * sin(ff);

@@ -20,8 +20,8 @@ CMatrix CreateRotate2D(double fi)
 // системы координат на угол -fi при фиксированном положении объекта 
 // fi - угол в градусах
 {
-	double fq = fmod(fi, 360.0);
-	double ff = (fq / 180.0)*pi; // Перевод в радианы
+	double fg = fmod(fi, 360.0);
+	double ff = (fg / 180.0)*pi; // Перевод в радианы
 	CMatrix RM(3, 3);
 	RM(0, 0) = cos(ff); RM(0, 1) = -sin(ff);
 	RM(1, 0) = sin(ff); RM(1, 1) = cos(ff);

@@ -87,7 +87,7 @@
     <ClInclude Include="CSunSystem.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="MyMode.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMatrix.cpp" />
