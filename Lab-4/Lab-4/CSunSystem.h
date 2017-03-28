@@ -114,3 +114,11 @@ void CSunSystem::Draw(CDC &dc)
 
 	dc.SelectObject(pOldBrush);
 }
+
+void CSunSystem::GetRS(CRectD& RSX)
+{
+	RSX.left = RS.left;
+	RSX.top = RS.top;
+	RSX.right = RS.right;
+	RSX.bottom = RS.bottom;
+}
