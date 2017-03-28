@@ -66,3 +66,51 @@ CSunSystem::CSunSystem()
 	PE = CreateRotate2D(dfiE);
 	PM = CreateRotate2D(dfiM);
 }
+
+void CSunSystem::SetNewCoords()
+{
+	MCoords = PM * MCoords;
+
+	double x = ECoords(0); double y = ECoords(1);
+	CMatrix P = CreateTranslate2D(x, y);
+	MCoords1 = P * MCoords;
+
+	MCoords1 = PE * MCoords1;
+	ECoords = PE * ECoords;
+}
+
+void CSunSystem::Draw(CDC &dc)
+{
+	CBrush SBrush, EBrush, MBrush, *pOldBrush;
+	CRect R;
+
+	SBrush.CreateSolidBrush(RGB(255, 0, 0));
+	EBrush.CreateSolidBrush(RGB(0, 0, 255));
+	MBrush.CreateSolidBrush(RGB(0, 255, 0));
+
+	// Рисуем орбиты
+	dc.SelectStockObject(NULL_BRUSH);
+	dc.Ellipse(EarthOrbit);
+
+	int d = MoonOrbit.right;
+	R.SetRect(ECoords(0) - d, ECoords(1) + d, ECoords(0) + d, ECoords(1) - d);
+	dc.Ellipse(R);
+
+	// Рисуем Солнце
+	pOldBrush = dc.SelectObject(&SBrush);
+	dc.Ellipse(Sun);
+
+	// Рисуем Землю
+	d = Earth.right;
+	R.SetRect(ECoords(0) - d, ECoords(1) + d, ECoords(0) + d, ECoords(1) - d);
+	dc.SelectObject(&EBrush);
+	dc.Ellipse(R);
+
+	// Рисуем Луну
+	d = Moon.right;
+	R.SetRect(MCoords1(0) - d, MCoords1(1) + d, MCoords1(0) + d, MCoords1(1) - d);
+	dc.SelectObject(&MBrush);
+	dc.Ellipse(R);
+
+	dc.SelectObject(pOldBrush);
+}
