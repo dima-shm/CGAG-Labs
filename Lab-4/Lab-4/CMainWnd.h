@@ -11,7 +11,7 @@
 class CMainWnd : public CFrameWnd
 {
 private:
-	int IsData;
+	bool IsData;
 	int dT_Timer;
 	CRect RW;
 	CRectD RS;
@@ -22,8 +22,8 @@ private:
 
 public:
 	CMainWnd::CMainWnd() {
-		Create(NULL, L"Lab-4", WS_VISIBLE | WS_SYSMENU | WS_MINIMIZEBOX, CRect(10, 10, 700, 700), NULL, NULL);
-		IsData = 0;
+		Create(NULL, L"Lab-4", WS_VISIBLE | WS_SYSMENU | WS_MINIMIZEBOX, CRect(10, 10, 700, 730), NULL, NULL);
+		IsData = false;
 	}
 
 	void OnPaint();
@@ -59,14 +59,13 @@ void CMainWnd::OnPaint()
 {
 	CPaintDC dc(this);
 	
-	if (IsData == 1) {
+	if (IsData) {
 		SunSystem.GetRS(RS);
 		RW = SunSystem.GetRW();
 		SetMyMode(dc, RS, RW); // Устанавливаем режим MM_ANISOTROPIC
 		SunSystem.Draw(dc);
 		dc.SetMapMode(MM_TEXT);
 	}
-
 }
 
 void CMainWnd::OnLabPlanets()
@@ -75,7 +74,7 @@ void CMainWnd::OnLabPlanets()
 	SunSystem.SetNewCoords();
 	SunSystem.SetDT(0.2);
 	dT_Timer = 100;
-	IsData = 1;
+	IsData = true;
 	Invalidate();
 }
 void CMainWnd::OnTimer(UINT_PTR nIDEvent)
@@ -86,8 +85,10 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent)
 }
 void CMainWnd::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	SetTimer(1, dT_Timer, NULL);
-	CWnd::OnLButtonDblClk(nFlags, point);
+	if (IsData) {
+		SetTimer(1, dT_Timer, NULL);
+		CWnd::OnLButtonDblClk(nFlags, point);
+	}
 }
 void CMainWnd::OnRButtonDblClk(UINT nFlags, CPoint point)
 {
