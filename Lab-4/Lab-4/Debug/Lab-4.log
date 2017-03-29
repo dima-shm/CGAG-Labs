@@ -1,4 +1,4 @@
-﻿Сборка начата 28.03.2017 22:30:57.
+﻿Сборка начата 29.03.2017 8:35:26.
      1>Проект "D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-4\Lab-4\Lab-4.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -18,13 +18,13 @@
      1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(87): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
      1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(88): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
      1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(89): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(200): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(209): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(215): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(221): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(227): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(233): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(239): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(201): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(210): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(216): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(222): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(228): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(234): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+     1>d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-4\lab-4\csunsystem.h(240): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-4\Debug\Lab-4.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-4\Debug\Lab-4.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-4\Debug\Lab-4.lib" /MACHINE:X86 "Debug\Lab-4.res"
          Debug\CMatrix.obj
@@ -34,4 +34,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:03.76
+Затраченное время: 00:00:02.98

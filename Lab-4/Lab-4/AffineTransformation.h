@@ -5,11 +5,11 @@ CMatrix CreateTranslate2D(double dx, double dy)
 // Формирует матрицу для преобразования координат объекта при смещении начала
 // системы координат на -dx оси X и на -dy по оси Y при фиксированном положении объекта
 {
-	CMatrix TM(3, 3);
-	TM(0, 0) = 1; TM(0, 2) = dx;
-	TM(1, 1) = 1; TM(1, 2) = dy;
-	TM(2, 2) = 1;
-	return TM;
+	CMatrix TS(3, 3);
+	TS(0, 0) = 1; TS(0, 1) = 0; TS(0, 2) = dx;
+	TS(1, 0) = 0; TS(1, 1) = 1; TS(1, 2) = dy;
+	TS(2, 0) = 0; TS(2, 1) = 1; TS(2, 2) = 1;
+	return TS;
 }
 
 CMatrix CreateRotate2D(double fi)
@@ -20,11 +20,11 @@ CMatrix CreateRotate2D(double fi)
 // системы координат на угол -fi при фиксированном положении объекта 
 // fi - угол в градусах
 {
-	double fg = fmod(fi, 360.0);
-	double ff = (fg / 180.0)*pi; // Перевод в радианы
-	CMatrix RM(3, 3);
-	RM(0, 0) = cos(ff); RM(0, 1) = -sin(ff);
-	RM(1, 0) = sin(ff); RM(1, 1) = cos(ff);
-	RM(2, 2) = 1;
-	return RM;
+	double ff = (fi * pi) / 180.0; // Перевод в радианы
+
+	CMatrix RS(3, 3);
+	RS(0, 0) = cos(ff); RS(0, 1) = -sin(ff); RS(0, 2) = 0;
+	RS(1, 0) = sin(ff); RS(1, 1) = cos(ff);  RS(1, 2) = 0;
+	RS(2, 0) = 0;       RS(2, 1) = 0;        RS(2, 2) = 1;
+	return RS;
 }

@@ -38,10 +38,10 @@ private:
 		   wMercury,
 		   wMars,
 		   wJupiter;
-	double fiE;		  // Угловое положение Земли в системе кординат Солнца, град
-	double dfiE;	  // Угол поворота Земли за время dt.
-	double fiM;		  // Угловое положение Луны в системе кординат Земли, град
-	double dfiM;	  // Угол поворота Земли за время dt
+	double fiE,		  // Угловое положение Земли в системе кординат Солнца, град
+		   dfiE;	  // Угол поворота Земли за время dt.
+	double fiM,		  // Угловое положение Луны в системе кординат Земли, град
+		   dfiM;	  // Угол поворота Земли за время dt
 	double fiV,
 		   dfiV,
 		   fiMe,
@@ -69,7 +69,7 @@ CSunSystem::CSunSystem()
 	double RoE = 7.5 * rS, RoM = 2 * rE,              // Радиусы орбит
 		RoV = 6 * rV, RoMe = 8 * rMe,
 		RoMa = 21 * rMa, RoJ = 17 * rJ;
-	double d = RoE + RoM + rM + RoMa;
+	double d = RoE + RoM + rM + RoMa;                 // Половина диаметра системы
 
 	RS.SetRectD(-d, d, d, -d);                        // Обалсть системы в МСК
 	RW.SetRect(0, 0, 650, 650);                       // Область системы в окне
@@ -88,10 +88,10 @@ CSunSystem::CSunSystem()
 	MarsOrbit.SetRect(-RoMa, RoMa, RoMa, -RoMa);
 	JupiterOrbit.SetRect(-RoJ, RoJ, RoJ, -RoJ);
 
-	fiE = 0; fiM = 0;                                  // Уловое положение 
+	fiE = 0; fiM = 0;                                 // Уловое положение 
 	fiV = 0; fiMe = 0;
 	fiMa = 0; fiJ = 0;
-	wEarth = 15;                                       // Угловая скорость
+	wEarth = 15;                                      // Угловая скорость
 	wMoon = 170;
 	wVenus = 20;
 	wMercury = 23;
@@ -119,13 +119,14 @@ CSunSystem::CSunSystem()
 	PMa.RedimMatrix(3, 3);
 	PJ.RedimMatrix(3, 3);
 
-	RoM = (MoonOrbit.right - MoonOrbit.left)   / 2; // Радиус орбит
+	RoM = (MoonOrbit.right - MoonOrbit.left)   / 2;   // Радиус орбит
 	RoE = (EarthOrbit.right - EarthOrbit.left) / 2;
 	RoV = (VenusOrbit.right - VenusOrbit.left) / 2;
 	RoMe = (MercuryOrbit.right - MercuryOrbit.left) / 2;
 	RoMa = (MarsOrbit.right - MarsOrbit.left) / 2;
 	RoJ = (JupiterOrbit.right - JupiterOrbit.left) / 2;
-	double ff = (fiM / 180.0) * pi;                 // Радианы
+
+	double ff = (fiM / 180.0) * pi;                   // Радианы
 	double x = RoM * cos(ff);
 	double y = RoM * sin(ff);
 	MCoords(0) = x; MCoords(1) = y; MCoords(2) = 1;
@@ -162,7 +163,7 @@ void CSunSystem::SetNewCoords()
 {
 	MCoords = PM * MCoords;
 
-	double x = ECoords(0); double y = ECoords(1);
+	double x = ECoords(0), y = ECoords(1);
 	CMatrix P = CreateTranslate2D(x, y);
 	MCoords1 = P * MCoords;
 
