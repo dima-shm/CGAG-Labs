@@ -3,6 +3,7 @@
 #include "CMatrix.h"
 #include "Lib.h"
 #include "CPlot2D.h"
+#include <string>
 
 
 CMatrix SpaceToWindow(CRectD& RS, CRect& RW)
@@ -51,8 +52,10 @@ private:
 	CMatrix X, Y;
 	CRect RW;
 	CRectD RS;
-	CPlot2D Graph, Graphs[4];
+	CPlot2D Graph[4];
 	CMyPen PenLine, PenAxis;
+	bool viewAll = false;
+	int numGraph = 0;
 	enum { menuTestsF1, menuTestsF2, menuTestsF3, menuTestsF4, menuTestsF1234, clear } condition;
 	CMenu menu;
 	DECLARE_MESSAGE_MAP()
@@ -66,15 +69,12 @@ public:
 
 	void OnPaint();
 
+	void SetFunction(std::string, double, double, double, CMyPen&, CMyPen&, CRect);
 	void MenuTestsF1();
 	void MenuTestsF2();
 	void MenuTestsF3();
 	void MenuTestsF4();
 	void MenuTestsF1234();
-	void Func1();
-	void Func2();
-	void Func3();
-	void Func4();
 
 	double MyF1(double);
 	double MyF2(double);
@@ -113,41 +113,53 @@ void CMainWnd::OnPaint()
 	switch (condition)
 	{
 	case menuTestsF1: {
-		Graph.Draw(dc, 1, 1);
+		Graph[numGraph].Draw(dc, 1, 1);
 	} break;
 	case menuTestsF2: {
-		Graph.GetRS(RS);
+		Graph[numGraph].GetRS(RS);
 		SetMyMode(dc, RS, RW); // Устанавливаем режим отображения MM_ANISOTROPIC
-		Graph.Draw1(dc, 1, 1);
+		Graph[numGraph].Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT); // Устанавливаем режим отображения MM_TEXT
 	} break;
 	case menuTestsF3: {
-		Graph.Draw(dc, 1, 1);
+		Graph[numGraph].Draw(dc, 1, 1);
 	} break;
 	case menuTestsF4: {
-		Graph.GetRS(RS);
+		Graph[numGraph].GetRS(RS);
 		SetMyMode(dc, RS, RW);
-		Graph.Draw1(dc, 1, 1);
+		Graph[numGraph].Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT);
 	} break;
 	case menuTestsF1234: {
-		Func1();
-		Graphs[0].Draw(dc, 1, 1);
+		viewAll = true;
 
-		Func3();
-		Graphs[2].Draw(dc, 1, 1);
+		PenLine.Set(PS_SOLID, 1, RGB(255, 0, 0));
+		PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
+		SetFunction("MyF1", (pi / 36), (-3 * pi), (3 * pi), PenLine, PenAxis, { 50, 50, 300, 200 });
+		Graph[0].Draw(dc, 1, 1);
 
-		Func2();
-		Graphs[1].GetRS(RS);
+		PenLine.Set(PS_SOLID, 1, RGB(0, 255, 0));
+		PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
+		SetFunction("MyF2", (0.25), (-5), (5), PenLine, PenAxis, { 450, 50, 700, 200 });
+		Graph[1].GetRS(RS);
 		SetMyMode(dc, RS, RW);
-		Graphs[1].Draw1(dc, 1, 1);
+		Graph[1].Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT);
 
-		Func4();
-		Graphs[3].GetRS(RS);
+		PenLine.Set(PS_DASHDOT, 1, RGB(255, 0, 0));
+		PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 0));
+		SetFunction("MyF3", (pi / 36), (0), (6 * pi), PenLine, PenAxis, { -400, -25, -150, 125 });
+		Graph[2].Draw(dc, 1, 1);
+
+		PenLine.Set(PS_SOLID, 2, RGB(255, 0, 0));
+		PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
+		SetFunction("MyF4", (0.25), (-10), (10), PenLine, PenAxis, { 450, 300, 700, 450 });
+		Graph[3].GetRS(RS);
 		SetMyMode(dc, RS, RW);
-		Graphs[3].Draw1(dc, 1, 1);
+		Graph[3].Draw1(dc, 1, 1);
 		dc.SetMapMode(MM_TEXT);
+
+		viewAll = false;
 	} break;
 	case clear: {
 		Invalidate();
@@ -155,178 +167,91 @@ void CMainWnd::OnPaint()
 	}
 }
 
-void CMainWnd::MenuTestsF1()
+void CMainWnd::SetFunction(std::string nameFunc, double _dx, double _xL, double _xH, CMyPen &_Pline, CMyPen &_PAxis, CRect _rect = { 150, 50, 600, 450 })
 {
-	double dx = pi / 36;
-	double xL = -3 * pi;
-	double xH = -xL;
+	double dx = _dx;
+	double xL = _xL;
+	double xH = _xH;
 	int N = (xH - xL) / dx;
 	X.RedimMatrix(N + 1);
 	Y.RedimMatrix(N + 1);
 
 	for (int i = 0; i <= N; i++) {
 		X(i) = xL + i*dx;
-		Y(i) = MyF1(X(i));
+		if (nameFunc == "MyF1")
+			Y(i) = MyF1(X(i));
+		if (nameFunc == "MyF2")
+			Y(i) = MyF2(X(i));
+		if (nameFunc == "MyF3")
+			Y(i) = MyF3(X(i));
+		if (nameFunc == "MyF4")
+			Y(i) = MyF4(X(i));
 	}
+	RW.SetRect(_rect.left, _rect.top, _rect.right, _rect.bottom);
+	if (numGraph == 4)
+		numGraph = 0;
+	if (viewAll)
+	{
+		if (numGraph < 4)
+		{
+			Graph[numGraph].SetParams(X, Y, RW);
+			Graph[numGraph].SetPenLine(_Pline);
+			Graph[numGraph].SetPenAxis(_PAxis);
+
+			numGraph++;
+		}
+	}
+	else
+	{
+		Graph[0].SetParams(X, Y, RW);
+		Graph[0].SetPenLine(_Pline);
+		Graph[0].SetPenAxis(_PAxis);
+	}
+
+	if (!viewAll)
+	{
+		if (nameFunc == "MyF1")
+			condition = menuTestsF1;
+		if (nameFunc == "MyF2")
+			condition = menuTestsF2;
+		if (nameFunc == "MyF3")
+			condition = menuTestsF3;
+		if (nameFunc == "MyF4")
+			condition = menuTestsF4;
+	}
+}
+void CMainWnd::MenuTestsF1()
+{
 	PenLine.Set(PS_SOLID, 1, RGB(255, 0, 0));
 	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(150, 50, 600, 450);
-	Graph.SetParams(X, Y, RW);
-	Graph.SetPenLine(PenLine);
-	Graph.SetPenAxis(PenAxis);
-
-	condition = menuTestsF1;
-	this->Invalidate();
+	Invalidate();
+	SetFunction("MyF1", (pi / 36), (-3 * pi), (3 * pi), PenLine, PenAxis);
 }
 void CMainWnd::MenuTestsF2()
 {
-	double dx = 0.25;
-	double xL = -5;
-	double xH = -xL;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF2(X(i));
-	}
 	PenLine.Set(PS_SOLID, 1, RGB(0, 255, 0));
 	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(150, 50, 600, 450);
-	Graph.SetParams(X, Y, RW);
-	Graph.SetPenLine(PenLine);
-	Graph.SetPenAxis(PenAxis);
-
-	condition = menuTestsF2;
-	this->Invalidate();
+	Invalidate();
+	SetFunction("MyF2", (0.25), (-5), (5), PenLine, PenAxis);
 }
 void CMainWnd::MenuTestsF3()
 {
-	double dx = pi / 36;
-	double xL = 0;
-	double xH = 6 * pi;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF3(X(i));
-	}
 	PenLine.Set(PS_DASHDOT, 1, RGB(255, 0, 0));
 	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 0));
-	RW.SetRect(150, 50, 600, 450);
-	Graph.SetParams(X, Y, RW);
-	Graph.SetPenLine(PenLine);
-	Graph.SetPenAxis(PenAxis);
-
-	condition = menuTestsF3;
-	this->Invalidate();
+	Invalidate();
+	SetFunction("MyF3", (pi / 36), (0), (6 * pi), PenLine, PenAxis);
 }
 void CMainWnd::MenuTestsF4()
 {
-	double dx = 0.25;
-	double xL = -10;
-	double xH = -xL;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF4(X(i));
-	}
 	PenLine.Set(PS_SOLID, 2, RGB(255, 0, 0));
 	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(150, 50, 600, 450);
-	Graph.SetParams(X, Y, RW);
-	Graph.SetPenLine(PenLine);
-	Graph.SetPenAxis(PenAxis);
-
-	condition = menuTestsF4;
-	this->Invalidate();
+	Invalidate();
+	SetFunction("MyF4", (0.25), (-10), (10), PenLine, PenAxis);
 }
 void CMainWnd::MenuTestsF1234()
 {
+	Invalidate();
 	condition = menuTestsF1234;
-	this->Invalidate();
-}
-void CMainWnd::Func1()
-{
-	double dx = pi / 36;
-	double xL = -3 * pi;
-	double xH = -xL;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF1(X(i));
-	}
-	PenLine.Set(PS_SOLID, 1, RGB(255, 0, 0));
-	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(50, 50, 300, 200);
-	Graphs[0].SetParams(X, Y, RW);
-	Graphs[0].SetPenLine(PenLine);
-	Graphs[0].SetPenAxis(PenAxis);
-}
-void CMainWnd::Func2()
-{
-	double dx = 0.25;
-	double xL = -5;
-	double xH = -xL;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF2(X(i));
-	}
-	PenLine.Set(PS_SOLID, 1, RGB(0, 255, 0));
-	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(450, 50, 700, 200);
-	Graphs[1].SetParams(X, Y, RW);
-	Graphs[1].SetPenLine(PenLine);
-	Graphs[1].SetPenAxis(PenAxis);
-}
-void CMainWnd::Func3()
-{
-	double dx = pi / 36;
-	double xL = 0;
-	double xH = 6 * pi;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF3(X(i));
-	}
-	PenLine.Set(PS_DASHDOT, 1, RGB(255, 0, 0));
-	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 0));
-	RW.SetRect(50, 300, 300, 450);
-	Graphs[2].SetParams(X, Y, RW);
-	Graphs[2].SetPenLine(PenLine);
-	Graphs[2].SetPenAxis(PenAxis);
-}
-void CMainWnd::Func4()
-{
-	double dx = 0.25;
-	double xL = -10;
-	double xH = -xL;
-	int N = (xH - xL) / dx;
-	X.RedimMatrix(N + 1);
-	Y.RedimMatrix(N + 1);
-	for (int i = 0; i <= N; i++) {
-		X(i) = xL + i*dx;
-		Y(i) = MyF4(X(i));
-	}
-	PenLine.Set(PS_SOLID, 2, RGB(255, 0, 0));
-	PenAxis.Set(PS_SOLID, 2, RGB(0, 0, 255));
-	RW.SetRect(450, 300, 700, 450);
-	Graphs[3].SetParams(X, Y, RW);
-	Graphs[3].SetPenLine(PenLine);
-	Graphs[3].SetPenAxis(PenAxis);
 }
 
 double CMainWnd::MyF1(double x)
