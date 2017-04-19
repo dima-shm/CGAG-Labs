@@ -19,9 +19,10 @@ private:
 public:
 	CMainWnd::CMainWnd() 
 	{
-		Create(NULL, L"Lab-4", WS_OVERLAPPEDWINDOW, CRect(10, 10, 700, 730), NULL, NULL);
+		Create(NULL, L"Lab-5", WS_OVERLAPPEDWINDOW, CRect(10, 10, 700, 700), NULL, NULL);
 		Index = 0;
 		PView.RedimMatrix(3);
+		PView(0) = 10; PView(1) = 300; PView(2) = 135;
 	}
 
 	void OnPaint();
@@ -37,8 +38,8 @@ BEGIN_MESSAGE_MAP(CMainWnd, CFrameWnd)
 	ON_WM_PAINT()
 	ON_WM_KEYDOWN()
 	ON_WM_SIZE()
-	ON_COMMAND(ID_40002, OnPuramid1)
-	ON_COMMAND(ID_40003, OnPuramid2)
+	ON_COMMAND(ID_30002, OnPuramid1)
+	ON_COMMAND(ID_30003, OnPuramid2)
 	ON_COMMAND(ID_EXIT, Exit)
 END_MESSAGE_MAP()
 int CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -68,21 +69,21 @@ void CMainWnd::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 		case VK_UP:
 		{
-			double d = PView(2) - 5;
+			double d = PView(2) - 1;
 			if (d >= 0)
 				PView(2) = d;
 			break;
 		}
 		case VK_DOWN:
 		{
-			double d = PView(2) + 5;
+			double d = PView(2) + 1;
 			if (d <= 180)
 				PView(2) = d;
 			break;
 		}
 		case VK_LEFT:
 		{
-			double d = PView(1) - 10;
+			double d = PView(1) - 1;
 			if (d >= -180)
 				PView(1) = d;
 			else
@@ -91,7 +92,7 @@ void CMainWnd::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 		case VK_RIGHT:
 		{
-			double d = PView(1) + 10;
+			double d = PView(1) + 1;
 			if (d <= 180)
 				PView(1) = d;
 			else
@@ -110,13 +111,11 @@ void CMainWnd::OnSize(UINT nType, int cx, int cy)
 }
 void CMainWnd::OnPuramid1()
 {
-	PView(0) = 20; PView(1) = 20; PView(2) = 60;
 	Index = 1;
 	Invalidate();
 }
 void CMainWnd::OnPuramid2()
 {
-	PView(0) = 10; PView(1) = 20; PView(2) = 60;
 	Index = 2;
 	Invalidate();
 }

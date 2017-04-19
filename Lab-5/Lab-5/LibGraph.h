@@ -1,24 +1,24 @@
 #include <math.h>
-const double pi=3.14159;
+const double pi = 3.14159;
 
 
 struct CSizeD
 {
-  double cx;
-  double cy;
+	double cx;
+	double cy;
 };
 
-struct CRectD 
- { 
-  double left; 
-  double top; 
-  double right; 
-  double bottom; 
-  CRectD(){ left=top=right=bottom=0; };
-  CRectD(double l,double t,double r,double b);
-  void SetRectD(double l,double t,double r,double b);
-  CSizeD SizeD();	// Возвращает размеры(ширина, высота) прямоугольника 
- };
+struct CRectD
+{
+	double left;
+	double top;
+	double right;
+	double bottom;
+	CRectD(){ left = top = right = bottom = 0; };
+	CRectD(double l, double t, double r, double b);
+	void SetRectD(double l, double t, double r, double b);
+	CSizeD SizeD();	// Возвращает размеры(ширина, высота) прямоугольника 
+};
 
 CRectD::CRectD(double l, double t, double r, double b)
 {
@@ -46,14 +46,17 @@ CSizeD CRectD::SizeD()
 CMatrix SphereToCart(CMatrix& PView)
 {
 	CMatrix R(3);
+
 	double r = PView(0);
 	double fi = PView(1);				// Градусы
 	double q = PView(2);				// Градусы
 	double fi_rad = (fi / 180.0)*pi;	// Перевод fi в радианы
 	double q_rad = (q / 180.0)*pi;		// Перевод q в радианы
+
 	R(0) = r*sin(q_rad)*cos(fi_rad);	// x- координата точки наблюдения
 	R(1) = r*sin(q_rad)*sin(fi_rad);	// y- координата точки наблюдения
-	R(2) = r*cos(q_rad);							// z- координата точки наблюдения
+	R(2) = r*cos(q_rad);				// z- координата точки наблюдения
+
 	return R;
 }
 CMatrix CreateViewCoord(double r, double fi, double q)
@@ -67,10 +70,10 @@ CMatrix CreateViewCoord(double r, double fi, double q)
 	double qq = (fg / 180.0)*pi; // Перевод в радианы
 
 	CMatrix VM(4, 4);
-	VM(0, 0) = -sin(ff);   VM(0, 1) = cos(ff);
-	VM(1, 0) = -cos(qq)*cos(ff);	VM(1, 1) = -cos(qq)*sin(ff);	VM(1, 2) = sin(qq);
-	VM(2, 0) = -sin(qq)*cos(ff);	VM(2, 1) = -sin(qq)*sin(ff);	VM(2, 2) = -cos(qq); VM(2, 3) = r;
-	VM(3, 3) = 1;
+	VM(0, 0) = -sin(ff);		    VM(0, 1) = cos(ff);				VM(0, 2) = 0;			VM(0, 3) = 0;
+	VM(1, 0) = -cos(qq)*cos(ff);	VM(1, 1) = -cos(qq)*sin(ff);	VM(1, 2) = sin(qq);		VM(1, 3) = 0;
+	VM(2, 0) = -sin(qq)*cos(ff);	VM(2, 1) = -sin(qq)*sin(ff);	VM(2, 2) = -cos(qq);	VM(2, 3) = r;
+	VM(3, 0) = 0;					VM(3, 1) = 0;					VM(3, 2) = 0;			VM(3, 3) = 1;
 	return VM;
 }
 CMatrix SpaceToWindow(CRectD& RS, CRect& RW)
