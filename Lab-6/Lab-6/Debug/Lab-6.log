@@ -1,0 +1,12 @@
+﻿  main.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(152): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(155): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(211): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(214): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(241): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(244): warning C4018: <: несоответствие типов со знаком и без знака
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(263): warning C4101: k: неиспользованная локальная переменная
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(263): warning C4101: d: неиспользованная локальная переменная
+d:\study\2 курс\2 семестр\кгиг\лабораторные\lab-6\lab-6\libsurface.h(194): warning C4715: CPlot3D::GetNumberRegion: значение возвращается не при всех путях выполнения
+  Lab-6.vcxproj -> D:\Study\2 курс\2 семестр\КГиГ\Лабораторные\Lab-6\Debug\Lab-6.exe
