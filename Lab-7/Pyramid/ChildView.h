@@ -26,9 +26,7 @@ public:
 	protected:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-// Implementation
-public:
-	virtual ~CChildView();
+
 
 	// Generated message map functions
 protected:

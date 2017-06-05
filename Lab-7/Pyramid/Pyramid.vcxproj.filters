@@ -67,10 +67,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ReadMe.txt" />
     <None Include="res\Pyramid.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pyramid.rc">
